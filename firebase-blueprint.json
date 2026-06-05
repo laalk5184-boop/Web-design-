@@ -1,0 +1,107 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "A lead submitted by a visitor via the website form",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "business": { "type": "string" },
+        "email": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "inquiryType": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "syncedToSheets": { "type": "boolean" }
+      },
+      "required": ["name", "email", "createdAt", "syncedToSheets"]
+    },
+    "Project": {
+      "title": "Project",
+      "description": "Portfolio project",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "industry": { "type": "string" },
+        "location": { "type": "string" },
+        "result": { "type": "string" },
+        "image": { "type": "string" },
+        "challenge": { "type": "string" },
+        "solution": { "type": "string" },
+        "metrics": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 10
+        },
+        "order": { "type": "number" }
+      },
+      "required": ["title"]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Client testimonial",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "business": { "type": "string" },
+        "text": { "type": "string" },
+        "photo": { "type": "string" },
+        "order": { "type": "number" }
+      },
+      "required": ["name"]
+    },
+    "PricingPlan": {
+      "title": "Pricing Plan",
+      "description": "Service pricing",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "price": { "type": "string" },
+        "badge": { "type": "string" },
+        "description": { "type": "string" },
+        "features": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 20
+        },
+        "technicalDetails": {
+          "type": "array",
+          "items": { "type": "string" },
+          "maxItems": 20
+        },
+        "highlight": { "type": "boolean" },
+        "order": { "type": "number" }
+      }
+    },
+    "Setting": {
+      "title": "Setting",
+      "description": "System settings like the Google Sheet ID",
+      "type": "object",
+      "properties": {
+        "spreadsheetId": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": { "$ref": "Lead" },
+      "description": "Leads submitted via the form"
+    },
+    "/projects/{projectId}": {
+      "schema": { "$ref": "Project" },
+      "description": "Portfolio projects"
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "Testimonial" },
+      "description": "Client reviews"
+    },
+    "/pricing_plans/{planId}": {
+      "schema": { "$ref": "PricingPlan" },
+      "description": "Pricing tiers"
+    },
+    "/settings/{settingId}": {
+      "schema": { "$ref": "Setting" },
+      "description": "Global settings for the application"
+    }
+  }
+}
